@@ -2,19 +2,23 @@
 
 
 .chips-input-container{
-  border:1px solid black;
+  border:1px solid lightgray;
+  border-radius: 4px;
   overflow: hidden; 
   overflow-x: auto;
   overflow-y: unset;
   margin: 1em;
   padding: 1ex;
   vertical-align: middle;
-  width: 480px;
-  border-color:lightgray;
+  width: 480px
+}
+.chips-input-container:hover{
+  border:1px solid rgb(119, 194, 255);;
 }
 
 div.inline { 
   float:left; 
+  margin: 0.1rem 0.3rem 0.1rem 0;
 }
 
 
@@ -42,24 +46,19 @@ div.inline {
 }
 
 .tag-item {
-  background-color: #9b9b9b;
   display: inline-block;
   height: 20px; 
    padding: 1px 4px 1px 1rem;
   display: inline-flex;
   align-items: center;
-  margin: 0 0.3rem 0.3rem 0;
   font: inherit;
   font-size:  80%;
   border-radius: 3px;
-  color: whitesmoke;
 }
 
 .tag-item > .button {
-  background-color: white;
   width: 20px;
   height: 20px;
-  /* border-radius: 50%; */
   border: none;
   cursor: pointer;
   font: inherit;
@@ -70,7 +69,5 @@ div.inline {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: whitesmoke;
-  background-color: #9b9b9b;
 }
 

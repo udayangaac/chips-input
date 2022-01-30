@@ -20,7 +20,7 @@ export class ChipsInput extends React.Component {
           value: ""
         });
       }
-     this.props.onAddChips ? this.props.onAddChips([...this.state.items, this.state.value]):console.log([...this.state.items, this.state.value])
+     this.props.onAddChips ? this.props.onAddChips([...this.state.items, this.state.value]):console.debug([...this.state.items, this.state.value])
     }
   };
 
@@ -65,17 +65,22 @@ export class ChipsInput extends React.Component {
     return this.state.items.includes(msg);
   }
   render() {
+    const bgColor = this.props.chipBgColor?this.props.chipBgColor:"#9b9b9b";
+    const color = this.props.chipColor?this.props.chipColor:"whitesmoke";
     return (
         <>
-         {this.state.error && <p className="error">{this.state.error}</p>}
             <div className="chips-input-container">
                 {this.state.items.map(item => (
-                <div className="tag-item inline" key={item}>
+                <div className="tag-item inline" style={{backgroundColor: bgColor,color: color}} key={item}>
                     {item}
                     <button
                     type="button"
                     className="button"
                     onClick={() => this.handleDelete(item)}
+                    style={{
+                      backgroundColor: bgColor,
+                      color: color,
+                    }}
                     >
                     &times;
                     </button>
@@ -94,6 +99,7 @@ export class ChipsInput extends React.Component {
                 />
                 </div>
             </div>
+            {this.state.error && <p className="error">{this.state.error}</p>}
       </>
     );
   }
