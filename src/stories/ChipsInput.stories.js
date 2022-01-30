@@ -5,5 +5,5 @@ import {ChipsInput} from "../components/ChipsInput"
 const stories = storiesOf('Chips Input',module);
 
 stories.add('Chips Input',()=>{
-    return <ChipsInput/>
+    return <ChipsInput placeholder="Enter cities..."/>
 });
