@@ -66,7 +66,7 @@ export class ChipsInput extends React.Component {
   }
   render() {
     const bgColor = this.props.chipBgColor?this.props.chipBgColor:"#9b9b9b";
-    const color = this.props.chipColor?this.props.chipColor:"whitesmoke";
+    const color = this.props.chipColor?this.props.chipColor:"#f5f5f5";
     return (
         <>
             <div className="chips-input-container">

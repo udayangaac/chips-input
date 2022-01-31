@@ -1,8 +1,8 @@
-# Chips Inputs
+# Chip Inputs
 
 ## Installation
 ```shell
-npm i chips-input
+npm i chips-input-lib
 ```
 ## Usage
 The component can be used as below.
@@ -12,7 +12,7 @@ The component can be used as below.
 
 - Source
 ```js
-import { ChipsInput } from 'chips-input';
+import { ChipsInput } from 'chips-input-lib';
 
 
 const onAddChips = (cities) => {
