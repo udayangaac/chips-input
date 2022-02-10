@@ -8,7 +8,7 @@ npm i chips-input-lib
 The component can be used as below.
 
 - View
-![sample](docs/sample.png)
+![sample](./docs/sample.png)
 
 - Source
 ```js
