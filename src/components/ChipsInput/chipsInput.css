@@ -10,7 +10,6 @@
   margin: 1em;
   padding: 1ex;
   vertical-align: middle;
-  width: 480px
 }
 .chips-input .container:hover{
   border:1px solid rgb(119, 194, 255);;
@@ -48,11 +47,10 @@
 .chips-input .tag-item {
   display: inline-block;
   height: 20px; 
-   padding: 1px 4px 1px 1rem;
+  padding: 1px 4px 1px 1rem;
   display: inline-flex;
   align-items: center;
   font: inherit;
-  font-size:  80%;
   border-radius: 3px;
 }
 

@@ -41,11 +41,9 @@ export class ChipsInput extends React.Component {
   handlePaste = (evt) => {
     evt.preventDefault();
     var paste = evt.clipboardData.getData("text");
-    var msgs = paste.match(/[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/g);
-    if (msgs) {
-      var toBeAdded = msgs.filter((msg) => !this.isInList(msg));
+    if (paste && !this.isInList(paste)) {
       this.setState({
-        items: [...this.state.items, ...toBeAdded],
+        items: [...this.state.items, paste],
       });
     }
   };
@@ -68,14 +66,36 @@ export class ChipsInput extends React.Component {
   render() {
     const bgColor = this.props.chipBgColor ? this.props.chipBgColor : "#9b9b9b";
     const color = this.props.chipColor ? this.props.chipColor : "#f5f5f5";
+    const fontFamily = this.props.fontFamily
+      ? this.props.fontFamily
+      : 'inherit';
+    const chipFontSize = this.props.chipFontSize
+      ? this.props.chipFontSize
+      : 'inherit';
+    const inputFontSize = this.props.inputFontSize
+      ? this.props.inputFontSize
+      : 'inherit';
+
+    let containerStyle = {};
+
+    // Custom width to the container style.
+    if (this.props.width) {
+      containerStyle["width"] = this.props.width;
+    }
+
     return (
       <>
         <div className="chips-input">
-          <div className="container">
+          <div style={containerStyle} className="container">
             {this.state.items.map((item) => (
               <div
                 className="tag-item inline"
-                style={{ backgroundColor: bgColor, color: color }}
+                style={{
+                  backgroundColor: bgColor,
+                  color: color,
+                  fontFamily: fontFamily,
+                  fontSize: chipFontSize,
+                }}
                 key={item}
               >
                 {item}
@@ -84,7 +104,8 @@ export class ChipsInput extends React.Component {
                   className="button"
                   onClick={() => this.handleDelete(item)}
                   style={{
-                    backgroundColor: bgColor,
+                    border: false,
+                    backgroundColor: "transparent",
                     color: color,
                   }}
                 >
@@ -95,9 +116,9 @@ export class ChipsInput extends React.Component {
 
             <div className="inline">
               <input
+                style={{ fontFamily: fontFamily, fontSize: inputFontSize }}
                 className={"input " + (this.state.error && " has-error")}
                 value={this.state.value}
-                // TODO: add place holder.
                 placeholder={this.props.placeholder}
                 onKeyDown={this.handleKeyDown}
                 onChange={this.handleChange}
