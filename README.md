@@ -1,4 +1,6 @@
-# Chip Inputs
+# Chips Input
+
+For input multiple texts as chips.
 
 ## Installation
 ```shell
