@@ -1,50 +1,51 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./chipsInput.css"
-
+import "./chipsInput.css";
 
 export class ChipsInput extends React.Component {
   state = {
     items: [],
     value: "",
-    error: null
+    error: null,
   };
 
-  handleKeyDown = evt => {
+  handleKeyDown = (evt) => {
     if (["Enter", "Tab", ","].includes(evt.key)) {
       evt.preventDefault();
       var value = this.state.value.trim();
       if (value && this.isValid(value)) {
         this.setState({
           items: [...this.state.items, this.state.value],
-          value: ""
+          value: "",
         });
       }
-     this.props.onAddChips ? this.props.onAddChips([...this.state.items, this.state.value]):console.debug([...this.state.items, this.state.value])
+      this.props.onAddChips
+        ? this.props.onAddChips([...this.state.items, this.state.value])
+        : console.debug([...this.state.items, this.state.value]);
     }
   };
 
-  handleChange = evt => {
+  handleChange = (evt) => {
     this.setState({
       value: evt.target.value,
-      error: null
+      error: null,
     });
   };
 
-  handleDelete = item => {
+  handleDelete = (item) => {
     this.setState({
-      items: this.state.items.filter(i => i !== item)
+      items: this.state.items.filter((i) => i !== item),
     });
   };
 
-  handlePaste = evt => {
+  handlePaste = (evt) => {
     evt.preventDefault();
     var paste = evt.clipboardData.getData("text");
     var msgs = paste.match(/[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/g);
     if (msgs) {
-      var toBeAdded = msgs.filter(msg => !this.isInList(msg));
+      var toBeAdded = msgs.filter((msg) => !this.isInList(msg));
       this.setState({
-        items: [...this.state.items, ...toBeAdded]
+        items: [...this.state.items, ...toBeAdded],
       });
     }
   };
@@ -65,30 +66,35 @@ export class ChipsInput extends React.Component {
     return this.state.items.includes(msg);
   }
   render() {
-    const bgColor = this.props.chipBgColor?this.props.chipBgColor:"#9b9b9b";
-    const color = this.props.chipColor?this.props.chipColor:"#f5f5f5";
+    const bgColor = this.props.chipBgColor ? this.props.chipBgColor : "#9b9b9b";
+    const color = this.props.chipColor ? this.props.chipColor : "#f5f5f5";
     return (
-        <>
-            <div className="chips-input-container">
-                {this.state.items.map(item => (
-                <div className="tag-item inline" style={{backgroundColor: bgColor,color: color}} key={item}>
-                    {item}
-                    <button
-                    type="button"
-                    className="button"
-                    onClick={() => this.handleDelete(item)}
-                    style={{
-                      backgroundColor: bgColor,
-                      color: color,
-                    }}
-                    >
-                    &times;
-                    </button>
-                </div>
-                ))}
+      <>
+        <div className="chips-input">
+          <div className="container">
+            {this.state.items.map((item) => (
+              <div
+                className="tag-item inline"
+                style={{ backgroundColor: bgColor, color: color }}
+                key={item}
+              >
+                {item}
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => this.handleDelete(item)}
+                  style={{
+                    backgroundColor: bgColor,
+                    color: color,
+                  }}
+                >
+                  &times;
+                </button>
+              </div>
+            ))}
 
-                <div className="inline">
-                <input
+            <div className="inline">
+              <input
                 className={"input " + (this.state.error && " has-error")}
                 value={this.state.value}
                 // TODO: add place holder.
@@ -96,10 +102,11 @@ export class ChipsInput extends React.Component {
                 onKeyDown={this.handleKeyDown}
                 onChange={this.handleChange}
                 onPaste={this.handlePaste}
-                />
-                </div>
+              />
             </div>
-            {this.state.error && <p className="error">{this.state.error}</p>}
+          </div>
+          {this.state.error && <p className="error">{this.state.error}</p>}
+        </div>
       </>
     );
   }

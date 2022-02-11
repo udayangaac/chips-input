@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 
 
-.chips-input-container{
+.chips-input .container{
   border:1px solid lightgray;
   border-radius: 4px;
   overflow: hidden; 
@@ -12,17 +12,17 @@
   vertical-align: middle;
   width: 480px
 }
-.chips-input-container:hover{
+.chips-input .container:hover{
   border:1px solid rgb(119, 194, 255);;
 }
 
-div.inline { 
+.chips-input .container div.inline { 
   float:left; 
   margin: 0.1rem 0.3rem 0.1rem 0;
 }
 
 
-.input {
+.chips-input .input {
   width: 100%;
   margin: auto;
   font: inherit;
@@ -31,21 +31,21 @@ div.inline {
   border: none;
 }
 
-.input:focus {
+.chips-input .input:focus {
   border-color: cornflowerblue;
   outline: none;
 }
 
-.input.has-error {
+.chips-input .input.has-error {
   border-color: tomato;
 }
 
-.error {
+.chips-input .error {
   font-size: 80%;
   color: tomato;
 }
 
-.tag-item {
+.chips-input .tag-item {
   display: inline-block;
   height: 20px; 
    padding: 1px 4px 1px 1rem;
@@ -56,7 +56,7 @@ div.inline {
   border-radius: 3px;
 }
 
-.tag-item > .button {
+.chips-input .tag-item > .button {
   width: 20px;
   height: 20px;
   border: none;
@@ -70,4 +70,3 @@ div.inline {
   align-items: center;
   justify-content: center;
 }
-
