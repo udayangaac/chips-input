@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "./chipsInput.css";
 
 export class ChipsInput extends React.Component {
@@ -64,71 +63,70 @@ export class ChipsInput extends React.Component {
     return this.state.items.includes(msg);
   }
   render() {
-    const bgColor = this.props.chipBgColor ? this.props.chipBgColor : "#9b9b9b";
-    const color = this.props.chipColor ? this.props.chipColor : "#f5f5f5";
-    const fontFamily = this.props.fontFamily
-      ? this.props.fontFamily
-      : 'inherit';
-    const chipFontSize = this.props.chipFontSize
-      ? this.props.chipFontSize
-      : 'inherit';
-    const inputFontSize = this.props.inputFontSize
-      ? this.props.inputFontSize
-      : 'inherit';
+    const {
+      chipBgColor,
+      chipColor,
+      chipFontSize,
+      classNames = {},
+      fontFamily,
+      inputFontSize,
+      placeholder,
+      styles = {},
+      width,
+    } = this.props;
+    const { error, items, value } = this.state;
 
-    let containerStyle = {};
-
-    // Custom width to the container style.
-    if (this.props.width) {
-      containerStyle["width"] = this.props.width;
-    }
+    const slotClassName = (slot, baseClassName) =>
+      [baseClassName, classNames[slot]].filter(Boolean).join(" ");
 
     return (
-      <>
-        <div className="chips-input">
-          <div style={containerStyle} className="container">
-            {this.state.items.map((item) => (
-              <div
-                className="tag-item inline"
-                style={{
-                  backgroundColor: bgColor,
-                  color: color,
-                  fontFamily: fontFamily,
-                  fontSize: chipFontSize,
-                }}
-                key={item}
+      <div className={slotClassName("root", "chips-input")} style={styles.root}>
+        <div
+          className={slotClassName("container", "container")}
+          style={{ width, ...styles.container }}
+        >
+          {items.map((item) => (
+            <div
+              className={slotClassName("chip", "tag-item inline")}
+              style={{
+                backgroundColor: chipBgColor,
+                color: chipColor,
+                fontFamily,
+                fontSize: chipFontSize,
+                ...styles.chip,
+              }}
+              key={item}
+            >
+              {item}
+              <button
+                type="button"
+                className={slotClassName("removeButton", "button")}
+                onClick={() => this.handleDelete(item)}
+                style={styles.removeButton}
               >
-                {item}
-                <button
-                  type="button"
-                  className="button"
-                  onClick={() => this.handleDelete(item)}
-                  style={{
-                    border: false,
-                    backgroundColor: "transparent",
-                    color: color,
-                  }}
-                >
-                  &times;
-                </button>
-              </div>
-            ))}
-
-            <div className="inline">
-              <input
-                style={{ fontFamily: fontFamily, fontSize: inputFontSize }}
-                className={"input " + (this.state.error && " has-error")}
-                value={this.state.value}
-                placeholder={this.props.placeholder}
-                onKeyDown={this.handleKeyDown}
-                onChange={this.handleChange}
-                onPaste={this.handlePaste}
-              />
+                &times;
+              </button>
             </div>
+          ))}
+
+          <div className={slotClassName("inputWrapper", "inline")} style={styles.inputWrapper}>
+            <input
+              style={{ fontFamily, fontSize: inputFontSize, ...styles.input }}
+              className={slotClassName("input", error ? "input has-error" : "input")}
+              value={value}
+              placeholder={placeholder}
+              onKeyDown={this.handleKeyDown}
+              onChange={this.handleChange}
+              onPaste={this.handlePaste}
+            />
           </div>
-          {this.state.error && <p className="error">{this.state.error}</p>}
         </div>
-      </>
+        {error && (
+          <p className={slotClassName("error", "error")} style={styles.error}>
+            {error}
+          </p>
+        )}
+      </div>
     );
   }
 }

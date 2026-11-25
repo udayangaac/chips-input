@@ -1,27 +1,24 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-
-
-.chips-input .container{
+:where(.chips-input .container) {
   border:1px solid lightgray;
   border-radius: 4px;
-  overflow: hidden; 
+  overflow: hidden;
   overflow-x: auto;
   overflow-y: unset;
   margin: 1em;
   padding: 1ex;
   vertical-align: middle;
 }
-.chips-input .container:hover{
-  border:1px solid rgb(119, 194, 255);;
+:where(.chips-input .container:hover) {
+  border:1px solid rgb(119, 194, 255);
 }
 
-.chips-input .container div.inline { 
-  float:left; 
+:where(.chips-input .container div.inline) {
+  float:left;
   margin: 0.1rem 0.3rem 0.1rem 0;
 }
 
 
-.chips-input .input {
+:where(.chips-input .input) {
   width: 100%;
   margin: auto;
   font: inherit;
@@ -30,35 +27,38 @@
   border: none;
 }
 
-.chips-input .input:focus {
+:where(.chips-input .input:focus) {
   border-color: cornflowerblue;
   outline: none;
 }
 
-.chips-input .input.has-error {
+:where(.chips-input .input.has-error) {
   border-color: tomato;
 }
 
-.chips-input .error {
+:where(.chips-input .error) {
   font-size: 80%;
   color: tomato;
 }
 
-.chips-input .tag-item {
-  display: inline-block;
-  height: 20px; 
+:where(.chips-input .tag-item) {
+  height: 20px;
   padding: 1px 4px 1px 1rem;
   display: inline-flex;
   align-items: center;
   font: inherit;
   border-radius: 3px;
+  background-color: #9b9b9b;
+  color: #f5f5f5;
 }
 
-.chips-input .tag-item > .button {
+:where(.chips-input .tag-item > .button) {
   width: 20px;
   height: 20px;
   border: none;
   cursor: pointer;
+  background-color: transparent;
+  color: inherit;
   font: inherit;
   margin-left: 10px;
   font-weight: bold;
