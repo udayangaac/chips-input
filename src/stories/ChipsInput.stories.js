@@ -1,4 +1,4 @@
-import {React} from "react";
+import React from "react";
 import { storiesOf } from "@storybook/react";
 import {ChipsInput} from "../components/ChipsInput"
 
@@ -13,3 +13,15 @@ stories.add('Chips Input',()=>{
     // inputFontSize="20px"
     />
 });
+
+stories.add('Custom styles', () => (
+  <ChipsInput
+    placeholder="Enter cities..."
+    onAddChips={() => {}}
+    styles={{
+      container: { borderColor: '#4338ca', borderRadius: 8, maxWidth: 480 },
+      chip: { backgroundColor: '#4338ca', color: 'white' },
+      input: { fontSize: '1rem' },
+    }}
+  />
+));

@@ -108,6 +108,13 @@ property.
 | classNames    | object |           | Additional CSS classes by element key.                                            |
 | styles        | object |           | React style objects by element key.                                               |
 
+## Storybook demo
+
+To publish the demo, select **GitHub Actions** as the source in the
+repository's **Settings → Pages**. Changes pushed to `main` run the tests,
+build Storybook, and deploy it to GitHub Pages. The workflow also supports
+manual runs from the **Actions** tab.
+
 ## Tests
 
 Run `npm test` to rebuild and test both package entries, server rendering, and styling.
